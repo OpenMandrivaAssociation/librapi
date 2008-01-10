@@ -1,5 +1,5 @@
 %define name	librapi
-%define release	%mkrel 1
+%define release	%mkrel 2
 %define version	0.11
 %define major 2
 %define libname %mklibname rapi %major
