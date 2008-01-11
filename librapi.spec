@@ -1,5 +1,5 @@
 %define name	librapi
-%define release	%mkrel 3
+%define release	%mkrel 4
 %define version	0.11
 %define major 2
 %define libname %mklibname rapi %major
@@ -78,12 +78,15 @@ rm -rf %buildroot
 %post -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libname}
+%files
 %defattr(-,root,root)
-%doc README TODO
 %{_bindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man3/*
+
+%files -n %{libname}
+%defattr(-,root,root)
+%doc README TODO
 %_libdir/librapi.so.%{major}
 %_libdir/librapi.so.%{major}.*
 
