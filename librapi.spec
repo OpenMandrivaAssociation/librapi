@@ -1,5 +1,5 @@
 %define name	librapi
-%define release	%mkrel 5
+%define release	%mkrel 6
 %define version	0.11
 %define major 2
 %define libname %mklibname rapi %major
@@ -48,6 +48,7 @@ Summary:	SynCE: Remote Application Programming Interface (RAPI) library
 Requires:	%{libname} = %{version}-%{release}
 Requires:	python
 Obsoletes:	%libname-python < %libname-python-%{version}
+Provides:	%{name}-python
 
 %description -n %{libname}-python
 Librapi is part of the SynCE project.
