@@ -1,5 +1,5 @@
 %define name	librapi
-%define release	%mkrel 6
+%define release	%mkrel 7
 %define version	0.11
 %define major 2
 %define libname %mklibname rapi %major
@@ -34,7 +34,6 @@ http://msdn.microsoft.com/library/default.asp?url=/library/en-us/wcesdkr/htm/_wc
 %package -n	%{libname}
 Group:		System/Libraries
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
-Obsoletes:	%libname < %libname-%{version}
 
 
 %description -n %{libname}
@@ -47,7 +46,6 @@ Group:		System/Libraries
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
 Requires:	%{libname} = %{version}-%{release}
 Requires:	python
-Obsoletes:	%libname-python < %libname-python-%{version}
 Provides:	%{name}-python
 
 %description -n %{libname}-python
@@ -60,8 +58,7 @@ Summary:	SynCE: Remote Application Programming Interface (RAPI) library
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Conflicts:	%{_lib}synce0-devel < 0.9.3
-Obsoletes:	%libname-devel < %libname-devel-%{version}
-Obsoletes:	%develname < %develname-%{version}
+Obsoletes:	%mklibname -d rapi 2
 
 %description -n %{develname}
 Librapi is part of the SynCE project:
