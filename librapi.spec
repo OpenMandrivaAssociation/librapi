@@ -5,7 +5,7 @@
 Name:		librapi
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
 Version:	0.11
-Release:	%{mkrel 8}
+Release:	%{mkrel 9}
 License:	MIT
 Group:		System/Libraries
 Source:		%{name}%{major}-%{version}.tar.bz2
@@ -13,6 +13,10 @@ Source:		%{name}%{major}-%{version}.tar.bz2
 # fix a problem with partnership detection in sync-engine - AdamW 
 # 2008/03
 Patch0:		librapi-rapierror.patch
+# From upstream SVN: increase a timeout, avoids problems when
+# removing larger applications on Windows Mobile devices - AdamW
+# 2008/03
+Patch1:		librapi-timeout.patch
 URL:		http://synce.sourceforge.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libsynce-devel = %{version}
@@ -66,6 +70,7 @@ headers.
 %prep
 %setup -q -n librapi2-%{version}
 %patch0 -p1 -b .rapierror
+%patch1 -p1 -b .timeout
 
 %build
 %configure2_5x --with-libsynce=%{_prefix}
