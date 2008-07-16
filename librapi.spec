@@ -4,7 +4,7 @@
 
 Name:		librapi
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
-Version:	0.11.1
+Version:	0.12
 Release:	%{mkrel 1}
 License:	MIT
 Group:		System/Libraries
