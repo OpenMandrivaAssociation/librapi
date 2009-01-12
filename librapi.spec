@@ -9,6 +9,9 @@ Release:	%{mkrel 1}
 License:	MIT
 Group:		System/Libraries
 Source0:	%{name}%{major}-%{version}.tar.gz
+# From Mark Ellis (will be in 0.13.1): fix compilation with harsher
+# nogil checks in recent pyrex - AdamW 2009/01
+Patch0:		pyrapi-nogil.diff
 URL:		http://synce.sourceforge.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libsynce-devel = %{version}
@@ -61,6 +64,7 @@ headers.
 
 %prep
 %setup -q -n librapi2-%{version}
+%patch0 -p1 -b .nogil
 
 %build
 %configure2_5x --with-libsynce=%{_prefix}
