@@ -11,7 +11,9 @@ Group:		System/Libraries
 Source0:	%{name}%{major}-%{version}.tar.gz
 URL:		http://synce.sourceforge.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
-BuildRequires:	libsynce-devel = %{version}
+# Because it got a point release...
+#BuildRequires:	libsynce-devel = %{version}
+BuildRequires:	libsynce-devel = 0.13
 BuildRequires:	python-devel
 BuildRequires:	python-pyrex
 Conflicts:	synce < 0.9.3
