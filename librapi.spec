@@ -4,20 +4,21 @@
 
 Name:		librapi
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
-Version:	0.13.1
+Version:	0.14
 Release:	%{mkrel 1}
 License:	MIT
 Group:		System/Libraries
 Source0:	%{name}%{major}-%{version}.tar.gz
+# Don't simply remove -Werror from CFLAGS, because it results in broken
+# "=format-security" CFLAG on Mandriva
+Patch0:		librapi2-0.14-configure.patch
 URL:		http://synce.sourceforge.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
-# Because it got a point release...
-#BuildRequires:	libsynce-devel = %{version}
-BuildRequires:	libsynce-devel = 0.13
+BuildRequires:	libsynce-devel 
 BuildRequires:	python-devel
 BuildRequires:	python-pyrex
 Conflicts:	synce < 0.9.3
-Obsoletes:	synce-%{name} <= %{version}-%{release}
+Obsoletes:	synce-%{name} < 0.13
 
 %description
 Librapi is part of the SynCE project.
@@ -42,7 +43,7 @@ Group:		System/Libraries
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
 Requires:	%{libname} = %{version}-%{release}
 Requires:	python
-Obsoletes:	%{mklibname rapi 2}-python <= %{version}-%{release}
+Obsoletes:	%{mklibname rapi 2}-python <= 0.13
 
 %description -n %{name}-python
 Librapi is part of the SynCE project. This package contains Python
@@ -55,7 +56,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Conflicts:	%{_lib}synce0-devel < 0.9.3
 Conflicts:	%{mklibname rapi 2} < 0.11-8mdv2008.1
-Obsoletes:	%mklibname -d rapi 2 <= %{version}-%{release}
+Obsoletes:	%mklibname -d rapi 2 <= 0.13
 
 %description -n %{develname}
 Librapi is part of the SynCE project. This package contains development
@@ -63,14 +64,20 @@ headers.
 
 %prep
 %setup -q -n librapi2-%{version}
+%patch0 -p1 -b .conf
 
 %build
-%configure2_5x --with-libsynce=%{_prefix}
+# needed for patch0
+autoreconf -fis
+%configure2_5x --disable-static --disable-rpath
 %make
 
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+
+rm -f %{buildroot}%{_libdir}/*.{la,a}
+rm -f %{buildroot}%{python_sitearch}/pyrapi2.{la,a}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -93,7 +100,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc README TODO
 %{_libdir}/%{name}.so
-%{_libdir}/%{name}.*a
 %{_includedir}/rapi.h
 %{_libdir}/pkgconfig/*.pc
 
