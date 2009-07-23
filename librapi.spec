@@ -17,8 +17,11 @@ Buildroot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libsynce-devel 
 BuildRequires:	python-devel
 BuildRequires:	python-pyrex
+# needed for autoreconf
+BuildRequires:	gettext-devel
+BuildRequires:	autoconf-archive
 Conflicts:	synce < 0.9.3
-Obsoletes:	synce-%{name} < 0.13
+Obsoletes:	synce-librapi < 0.13
 
 %description
 Librapi is part of the SynCE project.
