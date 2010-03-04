@@ -1,20 +1,21 @@
 %define major		2
 %define libname		%mklibname rapi %major
 %define develname	%mklibname -d rapi
+%define svn	r3893
 
 Name:		librapi
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
-Version:	0.14
-Release:	%{mkrel 1}
+Version:	0.15
+Release:	%mkrel 0.%{svn}.1
 License:	MIT
 Group:		System/Libraries
-Source0:	%{name}%{major}-%{version}.tar.gz
+Source0:	%{name}%{major}-%{svn}.tar.xz
 # Don't simply remove -Werror from CFLAGS, because it results in broken
 # "=format-security" CFLAG on Mandriva
 Patch0:		librapi2-0.14-configure.patch
 URL:		http://synce.sourceforge.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
-BuildRequires:	libsynce-devel 
+BuildRequires:	libsynce-devel >= 0.15
 BuildRequires:	python-devel
 BuildRequires:	python-pyrex
 # needed for autoreconf
@@ -66,12 +67,13 @@ Librapi is part of the SynCE project. This package contains development
 headers.
 
 %prep
-%setup -q -n librapi2-%{version}
-%patch0 -p1 -b .conf
+%setup -q -n librapi2
+#%patch0 -p1 -b .conf
 
 %build
 # needed for patch0
-autoreconf -fis
+#autoreconf -fis
+./autogen.sh
 %configure2_5x --disable-static --disable-rpath
 %make
 
@@ -103,7 +105,7 @@ rm -f %{buildroot}%{python_sitearch}/pyrapi2.{la,a}
 %defattr(-,root,root)
 %doc README TODO
 %{_libdir}/%{name}.so
-%{_includedir}/rapi.h
+%{_includedir}/*.h
 %{_libdir}/pkgconfig/*.pc
 
 %files -n %{name}-python
