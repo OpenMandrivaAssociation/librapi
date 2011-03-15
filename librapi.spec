@@ -5,14 +5,14 @@
 
 Name:		librapi
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
-Version:	0.15
-Release:	%mkrel 2
+Version:	0.15.2
+Release:	%mkrel 1
 License:	MIT
 Group:		System/Libraries
 Source0:	%{name}%{major}-%{version}.tar.gz
 URL:		http://synce.sourceforge.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
-BuildRequires:	libsynce-devel >= 0.15
+BuildRequires:	libsynce-devel >= 0.15.1
 BuildRequires:	python-devel
 BuildRequires:	python-pyrex
 Conflicts:	synce < 0.9.3
@@ -64,7 +64,7 @@ headers.
 %setup -q -n %{name}2-%{version}
 
 %build
-%configure2_5x --disable-static --disable-rpath
+%configure2_5x --disable-static --disable-rpath --enable-udev-support --disable-hal-support
 %make
 
 %install
