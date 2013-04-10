@@ -23,7 +23,8 @@ RAPI.DLL, available on Microsoft operating systems. The library makes
 it possible to make remote calls to a computer running Pocket PC.
 Documentation for the RAPI calls is available at this address:
 
-http://msdn.microsoft.com/library/default.asp?url=/library/en-us/wcesdkr/htm/_wcesdk_CeRapiInit.asp
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/wcesdkr/htm/_
+wcesdk_CeRapiInit.asp
 
 %package -n	%{libname}
 Group:		System/Libraries
