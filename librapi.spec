@@ -6,7 +6,7 @@
 Name:		librapi
 Summary:	SynCE: Remote Application Programming Interface (RAPI) library
 Version:	0.15.2
-Release:	2
+Release:	3
 License:	MIT
 Group:		System/Libraries
 URL:		http://synce.sourceforge.net/
@@ -23,8 +23,7 @@ RAPI.DLL, available on Microsoft operating systems. The library makes
 it possible to make remote calls to a computer running Pocket PC.
 Documentation for the RAPI calls is available at this address:
 
-http://msdn.microsoft.com/library/default.asp?url=/library/en-us/wcesdkr/htm/_
-wcesdk_CeRapiInit.asp
+http://goo.gl/nsCoA
 
 %package -n	%{libname}
 Group:		System/Libraries
