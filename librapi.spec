@@ -9,7 +9,7 @@ Version:	0.15.2
 Release:	4
 License:	MIT
 Group:		System/Libraries
-URL:		http://synce.sourceforge.net/
+URL:		https://synce.sourceforge.net/
 Source0:	%{name}%{major}-%{version}.tar.gz
 Patch0:		librapi2-dso.patch
 BuildRequires:	libsynce-devel >= 0.15.1
