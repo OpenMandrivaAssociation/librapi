@@ -12,6 +12,11 @@ Group:		System/Libraries
 URL:		https://synce.sourceforge.net/
 Source0:	%{name}%{major}-%{version}.tar.gz
 Patch0:		librapi2-dso.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	libsynce-devel >= 0.15.1
 BuildRequires:	python-devel
 BuildRequires:	python-pyrex
